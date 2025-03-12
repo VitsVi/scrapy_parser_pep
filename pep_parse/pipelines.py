@@ -2,9 +2,7 @@ import csv
 import os
 from collections import defaultdict
 from datetime import datetime
-from pathlib import Path
-
-BASE_DIR = Path(__file__).parent.parent
+from constants import BASE_DIR
 
 
 class PepParsePipeline:
