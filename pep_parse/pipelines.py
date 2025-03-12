@@ -2,14 +2,16 @@ import csv
 import os
 from collections import defaultdict
 from datetime import datetime
+from pathlib import Path
 
+BASE_DIR = Path(__file__).parent.parent
 
 class PepParsePipeline:
     def __init__(self):
         self.status_dict = defaultdict(int)
 
     def open_spider(self, spider):
-        results_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'results')
+        results_dir = BASE_DIR / 'results'
 
         if not os.path.exists(results_dir):
             os.makedirs(results_dir)
