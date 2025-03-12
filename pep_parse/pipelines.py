@@ -7,12 +7,14 @@ from datetime import datetime
 class PepParsePipeline:
     def __init__(self):
         self.status_dict = defaultdict(int)
-    
+
     def open_spider(self, spider):
         time_str = datetime.now().strftime('%Y-%m-%dT%H-%M-%S+00-00')
 
         file_path = os.path.join(
-            os.path.dirname(__file__), '..', 'results', f'status_summary_{time_str}.csv'
+            os.path.dirname(__file__), '..',
+            'results',
+            f'status_summary_{time_str}.csv'
         )
 
         self.file = open(
