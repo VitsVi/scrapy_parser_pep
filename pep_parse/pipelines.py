@@ -9,11 +9,15 @@ class PepParsePipeline:
         self.status_dict = defaultdict(int)
 
     def open_spider(self, spider):
-        time_str = datetime.now().strftime('%Y-%m-%dT%H-%M-%S+00-00')
+        results_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'results')
 
+        # Создаем директорию, если она не существует
+        if not os.path.exists(results_dir):
+            os.makedirs(results_dir)
+
+        time_str = datetime.now().strftime('%Y-%m-%dT%H-%M-%S+00-00')
         file_path = os.path.join(
-            os.path.dirname(__file__), '..',
-            'results',
+            results_dir,
             f'status_summary_{time_str}.csv'
         )
 
@@ -31,7 +35,5 @@ class PepParsePipeline:
         return item
 
     def close_spider(self, spider):
-        for status, count in self.status_dict.items():
-            self.writer.writerow([status, count])
 
         self.file.close()

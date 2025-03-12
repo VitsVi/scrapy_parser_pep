@@ -17,10 +17,10 @@ class PepSpider(scrapy.Spider):
             pep_page_link = urljoin(PEPS_URL, a_href)
             yield response.follow(
                 pep_page_link,
-                callback=self.pep_page,
+                callback=self.parse_pep,
             )
 
-    def pep_page(self, response):
+    def parse_pep(self, response):
         status = None
         name = response.xpath(
             "substring-after(//h1[@class='page-title']/text(), ' – ')"
