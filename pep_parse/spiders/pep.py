@@ -17,7 +17,7 @@ class PepSpider(scrapy.Spider):
             pep_page_link = urljoin(PEPS_URL, a_href)
             yield response.follow(
                 pep_page_link,
-                callback = self.pep_page,
+                callback=self.pep_page,
             )
 
     def pep_page(self, response):

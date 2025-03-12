@@ -13,7 +13,7 @@ class PepParsePipeline:
         file_path = os.path.join(
             os.path.dirname(__file__), '..', f'status_summary_{time_str}.csv'
         )
-        
+
         self.file = open(
             file_path,
             mode='w',
@@ -22,7 +22,7 @@ class PepParsePipeline:
         )
         self.writer = csv.writer(self.file)
         self.writer.writerow(['Status', 'Count'])
- 
+
     def process_item(self, item, spider):
         self.status_dict[item["status"]] += 1
         return item
